@@ -457,9 +457,10 @@ class MemCache
   def get_server_for_key(key)
     raise ArgumentError, "illegal character in key #{key.inspect}" if
       key =~ /\s/
-    raise ArgumentError, "key too long #{key.inspect}" if key.length > 250
+    # raise ArgumentError, "key too long #{key.inspect}" if key.length > 250
     raise MemCacheError, "No servers available" if @servers.empty?
     return @servers.first if @servers.length == 1
+    key = Digest::MD5.hexdigest(key) if key.length > 250
 
     hkey = hash_for(key)
 
