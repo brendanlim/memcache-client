@@ -6,7 +6,7 @@ require 'timeout'
 require 'rubygems'
 require 'zlib'
 require 'digest/sha1'
-
+require 'digest/md5'
 ##
 # A Ruby client library for memcached.
 #
